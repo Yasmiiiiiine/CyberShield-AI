@@ -191,7 +191,7 @@
   </footer>
 
   <script>
-    const API_BASE = 'http://192.168.100.6:8080';
+    const API_BASE = 'https://cybershield-ai-zb94.onrender.com';
 
     const RISK_STYLES = {
       'Faible':   { badge: 'bg-emerald-50 text-emerald-700 border-emerald-200', bar: 'bg-emerald-500', ring: 'text-emerald-500' },
@@ -293,7 +293,7 @@
       });
     }
 
-    // Association des formulaires avec la bonne structure attendue par main.py
+    // Association des formulaires
     handleSubmit(
       document.getElementById('form-password'),
       '/analyze/password',
@@ -308,14 +308,11 @@
       'result-url'
     );
 
-    // ICI : Envoi de email ET email_content pour éviter toute erreur 422 de validation FastAPI
+    // CORRECTION ICI : Envoi strict de la clé email_content attendue par FastAPI
     handleSubmit(
       document.getElementById('form-email'),
       '/analyze/email',
-      () => {
-        const val = document.getElementById('input-email').value;
-        return { email: val, email_content: val };
-      },
+      () => ({ email_content: document.getElementById('input-email').value }),
       'result-email'
     );
   </script>
