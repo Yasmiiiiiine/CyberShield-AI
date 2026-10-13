@@ -40,5 +40,5 @@ def api_analyze_email(data: EmailInput):
 
 if __name__ == "__main__":
     import uvicorn
-    # Correction de l'appel uvicorn (on passe directement l'application sans conflit)
+    # Lancement direct de l'application FastAPI
     uvicorn.run(app, host="0.0.0.0", port=8080)
