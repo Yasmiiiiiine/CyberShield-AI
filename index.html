@@ -191,7 +191,8 @@
   </footer>
 
   <script>
-    const API_BASE = 'https://cybershield-ai-zb94.onrender.com';
+    // Mise à jour de l'URL de base vers la nouvelle instance Render
+    const API_BASE = 'https://cybershield-ai-2-65rz.onrender.com';
 
     const RISK_STYLES = {
       'Faible':   { badge: 'bg-emerald-50 text-emerald-700 border-emerald-200', bar: 'bg-emerald-500', ring: 'text-emerald-500' },
@@ -286,7 +287,7 @@
           const data = await response.json();
           renderResult(resultEl, data);
         } catch (err) {
-          renderError(resultEl, "Erreur de communication avec l'API. Vérifie le format ou le terminal.");
+          renderError(resultEl, "Erreur de communication avec l'API. Vérifie la connexion réseau ou l'état du serveur.");
         } finally {
           setLoading(form, false);
         }
@@ -308,7 +309,6 @@
       'result-url'
     );
 
-    // CORRECTION ICI : Envoi strict de la clé email_content attendue par FastAPI
     handleSubmit(
       document.getElementById('form-email'),
       '/analyze/email',
