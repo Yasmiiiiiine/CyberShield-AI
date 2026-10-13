@@ -1,7 +1,6 @@
 import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 
 # Importation directe depuis le fichier analyzer.py
@@ -9,7 +8,7 @@ from analyzer import analyze_password, analyze_url, analyze_email_text
 
 app = FastAPI(title="CyberShield AI API")
 
-# Configuration CORS
+# Configuration CORS pour autoriser votre site Vercel à communiquer avec Render
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -26,14 +25,6 @@ class UrlInput(BaseModel):
 
 class EmailInput(BaseModel):
     email_content: str
-
-# Route principale GET : Affiche directement l'interface front-end
-@app.get("/", response_class=HTMLResponse)
-index():
-    if os.path.exists("index.html"):
-        with open("index.html", "r", encoding="utf-8") as f:
-            return f.read()
-    return "<h3>Bienvenue sur l'API CyberShield AI. Le fichier index.html est introuvable sur le serveur.</h3>"
 
 @app.post("/analyze/password")
 def api_analyze_password(data: PasswordInput):
