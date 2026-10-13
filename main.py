@@ -3,12 +3,10 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-# Importation directe depuis le fichier analyzer.py
 from analyzer import analyze_password, analyze_url, analyze_email_text
 
 app = FastAPI(title="CyberShield AI API")
 
-# Configuration CORS pour autoriser votre site Vercel à communiquer avec Render
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
